@@ -62,9 +62,11 @@ class SendMoneyWidget extends StatelessWidget {
                     leading: Image.asset('assets/images/hdfc_logo.png', ),
                     title: Text("HDFC Bank", style: TextStyle(color: Color(0xffcbcad7), fontWeight: FontWeight.bold, fontSize: 16),),
                     subtitle: Text("50100117009192", style: TextStyle(color: Color(0xff5d5f6e), fontWeight: FontWeight.w600, fontSize: 12),),
-                    trailing: Icon(Icons.check_circle, color: Color(0xffcbcad7),),
+                    trailing: Obx(()=> (controller.toggleBankBool.value) ? Icon(Icons.check_circle, color: Color(0xffcbcad7),) :
+                    Icon(Icons.circle_outlined, color: Color(0xffcbcad7))),
                     onTap: (){
                       print("ontap listtile");
+                      controller.updateBankToggle(!controller.toggleBankBool.value);
                     },
                   ),
                   const SizedBox(

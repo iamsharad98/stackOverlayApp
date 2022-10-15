@@ -47,20 +47,22 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         body: Stack(
-          clipBehavior: Clip.none,
+          // clipBehavior: Clip.none,
           children: [
             Container(
               height: size.height,
               child: Column(
                 children: <Widget>[
                   Expanded(
-                    child: Obx(() => AnimatedList(
+                    child:
+                    Obx(() => AnimatedList(
                       key: animatedListKey,
                       initialItemCount: controller.itemsDataFilling.length,
                       // physics: const NeverScrollableScrollPhysics(),
                       //  clipBehavior: Clip.none,
-                      // shrinkWrap: true,
-                      itemBuilder: (context, index, animation) => _widgetListItem(context, index, animation),
+                      // scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index, animation) => widgetListItem(context, index, animation),
                     ),
                     ),
                   ),
@@ -78,25 +80,30 @@ class HomeScreen extends StatelessWidget {
     // return Scaffold(body: addMoneyToWallet());
   }
 
-  Widget _widgetListItem(BuildContext context, int index, animation) {
-    return SlideTransition(
+  Widget widgetListItem(BuildContext context, int index, animation) {
+    return
+      // ScaleTransition(scale: animation,
+      SlideTransition(
       position: animation.drive(
-        // Tween that slides from right to left.
         Tween(begin: const Offset(0.0, 3.0), end: const Offset(0.0, 0.0)),
-        // Tween(begin:Offset(0.0, 0.0), end: Offset(0.0, 3.0)),
       ),
       // Simply display the letter.
       //controller.removeAboveStackItem(index, animatedListKey);
-      child: InkWell(
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: (){
           print("tap on index $index");
           controller.removeAboveStackItem(index, animatedListKey);
         },
-        child: Align(
-          // heightFactor: 0.2,
-          //   heightFactor: 0.1,
-            alignment: Alignment.topCenter,
-            child: (index >= controller.itemsDataFilling.length) ? Container() : controller.itemsDataFilling[index]),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Align(
+            // heightFactor: 0.2,
+            //   heightFactor: 0.1,
+              alignment: Alignment.topCenter,
+              child: (index >= controller.itemsDataFilling.length) ? Container() : controller.itemsDataFilling[index],
+          ),
+        ),
         // child: Positioned(
         //   top: 20,
         //   child: (index >= controller.itemsDataFilling.length) ? Container() : controller.itemsDataFilling[index]),

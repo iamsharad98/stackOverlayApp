@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project_app/constants.dart';
+import 'package:test_project_app/utils/constants.dart';
 import 'package:test_project_app/controller/categories_scroller_controller.dart';
 
 class CategoriesScroller extends StatelessWidget {

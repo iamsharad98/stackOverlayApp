@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'package:test_project_app/constants.dart';
+import 'package:test_project_app/utils/constants.dart';
 import 'package:test_project_app/controller/categories_scroller_controller.dart';
 import '../controller/home_page_controller.dart';
 import 'CategoriesScroller.dart';
@@ -23,6 +23,7 @@ class RepayMoneyWidget extends StatelessWidget {
     return FractionalTranslation(
       // translation: Offset(0, -0.8),
       translation: Offset(0, 0),
+      transformHitTests: false,
       child: Container(
         height: 500,
           // height: MediaQuery.of(context).size.height,
@@ -72,18 +73,24 @@ class RepayMoneyWidget extends StatelessWidget {
                         height: 15,
                       ),
                       categoriesScroller,
-                      Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: const Color(0xff5e6671),
-                                width: 2,
-                              ),
-                              borderRadius: const BorderRadius.all(Radius.circular(25))
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text("Create your own plan", style: TextStyle(color: Color(0xff5e6671), fontWeight: FontWeight.bold),),
-                          )
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: (){
+                          print("ontap container");
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: const Color(0xff5e6671),
+                                  width: 2,
+                                ),
+                                borderRadius: const BorderRadius.all(Radius.circular(25))
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text("Create your own plan", style: TextStyle(color: Color(0xff5e6671), fontWeight: FontWeight.bold),),
+                            )
+                        ),
                       )
                     ],
                   );
@@ -117,11 +124,11 @@ class RepayMoneyWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        // Obx((){
-                        //   if(controller.itemsDataFilling.length != 2)
-                        //     return const Icon(Icons.arrow_drop_down, color: Colors.grey, size: 35,);
-                        //   return Container();
-                        // })
+                        Obx((){
+                          if(controller.itemsDataFilling.length != 2)
+                            return const Icon(Icons.arrow_drop_down, color: Colors.grey, size: 35,);
+                          return Container();
+                        })
                       ],
                     ),
                   ],
