@@ -1,3 +1,4 @@
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -6,7 +7,7 @@ import 'package:test_project_app/views/bottom_bar_widget.dart';
 import 'CategoriesScroller.dart';
 
 class HomeScreen extends StatelessWidget {
-  final CategoriesScroller categoriesScroller = const CategoriesScroller();
+  final CategoriesScroller categoriesScroller = CategoriesScroller();
   final animatedListKey = GlobalKey<AnimatedListState>();
   final HomePageController controller = Get.put(HomePageController());
   HomeScreen({super.key});
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: const Color(0xff121419),
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.black26,
+          backgroundColor: Color(0xff121419),
           leading: const Icon(
             Icons.cancel,
             color: Colors.grey,
@@ -56,7 +57,9 @@ class HomeScreen extends StatelessWidget {
                     child: Obx(() => AnimatedList(
                       key: animatedListKey,
                       initialItemCount: controller.itemsDataFilling.length,
-                      physics: const NeverScrollableScrollPhysics(),
+                      // physics: const NeverScrollableScrollPhysics(),
+                      //  clipBehavior: Clip.none,
+                      // shrinkWrap: true,
                       itemBuilder: (context, index, animation) => _widgetListItem(context, index, animation),
                     ),
                     ),
@@ -91,14 +94,19 @@ class HomeScreen extends StatelessWidget {
         },
         child: Align(
           // heightFactor: 0.2,
-            heightFactor: 0.1,
+          //   heightFactor: 0.1,
             alignment: Alignment.topCenter,
             child: (index >= controller.itemsDataFilling.length) ? Container() : controller.itemsDataFilling[index]),
         // child: Positioned(
         //   top: 20,
         //   child: (index >= controller.itemsDataFilling.length) ? Container() : controller.itemsDataFilling[index]),
+        // child: ColumnSuper(
+        //   innerDistance: -20,
+        //   children: [
+        // (index >= controller.itemsDataFilling.length) ? Container() : controller.itemsDataFilling[index]
+        //   ],
+        // ),
       ),
     );
   }
-
 }

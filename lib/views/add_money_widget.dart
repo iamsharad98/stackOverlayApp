@@ -15,8 +15,8 @@ class AddMoneyToWallet extends StatelessWidget {
   Widget build(BuildContext context) {
     var format = NumberFormat.currency(locale: 'HI', symbol: "\u{20B9}");
     return Container(
-      // height: 500,
-        height: MediaQuery.of(context).size.height,
+      height: 500,
+      //   height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(borderRadius: const BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
             color: const Color(0xff161921), boxShadow: [
               BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),

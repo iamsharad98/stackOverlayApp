@@ -39,6 +39,7 @@ dependencies:
   sleek_circular_slider: ^2.0.1
   intl: ^0.17.0
   get: ^4.6.5
+  assorted_layout_widgets: ^7.0.0
 
 dev_dependencies:
   flutter_test:
