@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   Future<bool> _onWillPop() async {
     print("onPop Called");
-    controller.removeAboveStackItem(controller.itemsDataFilling.length -2 >= 0 ? controller.itemsDataFilling.length -2 : 0, animatedListKey);
+    // controller.removeAboveStackItem(controller.itemsDataFilling.length -2 >= 0 ? controller.itemsDataFilling.length -2 : 0, animatedListKey);
     return false;
   }
 
@@ -51,22 +51,25 @@ class HomeScreen extends StatelessWidget {
           children: [
             Container(
               height: size.height,
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child:
-                    Obx(() => AnimatedList(
-                      key: animatedListKey,
-                      initialItemCount: controller.itemsDataFilling.length,
-                      // physics: const NeverScrollableScrollPhysics(),
-                      //  clipBehavior: Clip.none,
-                      // scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index, animation) => widgetListItem(context, index, animation),
-                    ),
-                    ),
-                  ),
-                ],
+              // child: Stack(
+              //   children: <Widget>[
+              //     // Expanded(
+              //     //   child:
+              //     //   Obx(() => AnimatedList(
+              //     //     key: animatedListKey,
+              //     //     initialItemCount: controller.itemsDataFilling.length,
+              //     //     // physics: const NeverScrollableScrollPhysics(),
+              //     //     //  clipBehavior: Clip.none,
+              //     //     // scrollDirection: Axis.vertical,
+              //     //     shrinkWrap: true,
+              //     //     itemBuilder: (context, index, animation) => widgetListItem(context, index, animation),
+              //     //   ),
+              //     //   ),
+              //     // ),
+              //
+              //   ],
+              child: Stack(
+              children: controller.itemsDataFilling.value,
               ),
             ),
             Align(
@@ -93,7 +96,7 @@ class HomeScreen extends StatelessWidget {
         behavior: HitTestBehavior.opaque,
         onTap: (){
           print("tap on index $index");
-          controller.removeAboveStackItem(index, animatedListKey);
+          // controller.removeAboveStackItem(index, animatedListKey);
         },
         child: Padding(
           padding: const EdgeInsets.only(top: 5),

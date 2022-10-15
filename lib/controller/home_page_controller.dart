@@ -19,11 +19,11 @@ class HomePageController extends GetxController{
   }
 
 
-  removeAboveStackItem(var index, var animatedListKey){
+  removeAboveStackItem(var index){
     if(index == itemsDataFilling.length - 1) return;
     print("removeAboveStackItem: index item ${index} ${itemsDataFilling.length}");
     int i = itemsDataFilling.length -1;
-    int tempIndex = itemsDataFilling.length -1;
+    // int tempIndex = itemsDataFilling.length -1;
     while(itemsDataFilling.isNotEmpty && i != index){
       int lastIndex = itemsDataFilling.length -1;
       Widget rem = itemsDataFilling.removeAt(lastIndex);
@@ -32,8 +32,9 @@ class HomePageController extends GetxController{
       itemsDataPopped.add(rem);
       i--;
     }
-    animatedListKey.currentState?.removeItem(tempIndex-1, (context, animation) =>
-        HomeScreen().widgetListItem(context, tempIndex-1 , animation),);
+    print("removeAboveStackItem:  ${itemsDataFilling.length}");
+    // animatedListKey.currentState?.removeItem(tempIndex-1, (context, animation) =>
+    //     HomeScreen().widgetListItem(context, tempIndex-1 , animation),);
 
   }
 
